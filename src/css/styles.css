@@ -13,6 +13,16 @@ body {
   color: #F9F6EE;
 }
 
+main {
+  display:flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 50vh;
+  border-style: dotted;
+  border-color: purple;
+
+}
+
 .login-in-container {
   justify-content: center;
   align-items: center;
@@ -117,6 +127,14 @@ form > button {
 form > button:hover {
   background: #e07999;
   color: white;
+}
+
+.user-information {
+  margin: 30px;
+  width: 40vw;
+  height: 20vh;
+  border-style: dotted;
+  border-color: green;
 }
 
 /* Hidden */
