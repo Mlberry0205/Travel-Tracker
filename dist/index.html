@@ -1,14 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir='ltr'>
 <head>
   <meta charset="UTF-8">
+  <link rel='icon' href='./images/baggage.png'>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <title>Travel Tracker</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
+  <!---SIGNIN PAGE-->
+  <section class="home-view">
+     <h1 class="welcome-page">The World is your Oyster.</h1>
+  </section>
+  <section class="login-view hidden">
+    <form>
+      <div class="imagecontainer">
+        <!-- //add image! -->
+      </div>
+      <section class="login-in-container" hidden>
+        <p>Please Sign In</p>
+        <label for="username"><b>Username</b></label>
+        <input tabindex="1" type="text" class="client-name-input" placeholder="Enter Username" id="'username" required>
+        <label for="password"><b>Password</b></label>
+        <input tabindex="2" type="password" class="client-password-input" placeholder="Enter Password" id="password" required>
+        <div class="container" >
+          <button tabindex="3" type="button" class="login-button">Login</button>
+          <p class="hidden" id="login-error">Login Error. Please try again.</p>
+        </div>
+      </section>
+    </form>
+  </section>
+  <header class='top-section'>
+     <section class='user-welcome'>
+       <p class='user-welcome'>Welcome back, User!</p>
+     </section>
+     <section class='logo-title'>
+       <img src='./images/baggage.png' class='logo-image' alt='travel tracker logo'>
+     </section>
+   </header>
+
+  <section class="view form-view">
+  <form>
+    <label for="destination">Destination</label>
+    <input class="user-destination" type="text" id="userDestination" />
+    <label for="departure">Departure Date</label>
+    <input class="user-departure" type="text" id="userDeparture">
+    <label for="duration">Trip Duration (days)</label>
+    <input class="user-duration" type="text" id="userDuration" />
+    <label for="number-of-travelers">Number of travelers</label>
+    <input class="travelers" type="text" id="travelers" />
+    <button class="create-cost-button">Estimate Cost</button>
+  </form>
+</section>
+
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 

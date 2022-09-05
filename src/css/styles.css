@@ -1,3 +1,125 @@
+
+/* Global */
+* {
+  font-family:'Times New Roman', Times, serif;
+}
+
 body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #060911;
+  color: #F9F6EE;
+}
+
+.login-in-container {
+  justify-content: center;
+  align-items: center;
+}
+
+/* #sign-in-box {
+  height: 300px;
+  width: 275px;
+  margin-top: 100px;
+  background: $transparent-background;
+  border-radius: $border-radius;
+  align-items: center;
+} */
+
+header {
+  display: flex;
+  flex-direction: column;
+  background-color: #060911;
+  width: 100vw;
+  height: 20vh;
+  align-content: stretch;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  border-style: dotted;
+  border-color: pink;
+}
+
+.user-welcome {
+  color: #01834e;
+  font-size: 3vw;
+  font-weight: 500;
+  font-style: unset;
+  /* margin-top: 10%; */
+}
+
+.logo-title {
+  width: 1.5vw;
+  height: .7vh;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 12%;
+  margin-right: 80%;
+}
+
+.logo-image {
+  align-items: center;
+  border-radius: 8%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 80%;
+  width: 80%;
+  margin-right: 30px;
+  border-style: dotted;
+  border-color: red;
+}
+/* ~~~~~~~~~~~~~ Book a trip FORM ~~~~~~~~~~~~~~~ */
+view form-view {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 40px;
+  border-style: dotted;
+  border-color: red;
+}
+
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 30px;
+  border-style: dotted;
+  border-color: green;
+  width: 30vw;
+  height: 35vh;
+}
+
+form > label,
+form > input {
+  width: 50%;
+}
+
+form > input {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+form > button {
+  background: purple;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  margin: 10px;
+  padding: 10px 20px;
+}
+
+form > button:hover {
+  background: #e07999;
+  color: white;
+}
+
+/* Hidden */
+.hidden {
+  display: none;
 }
