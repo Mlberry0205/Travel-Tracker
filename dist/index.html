@@ -38,20 +38,24 @@
        <img src='./images/baggage.png' class='logo-image' alt='travel tracker logo'>
      </section>
    </header>
-
-  <section class="view form-view">
-  <form>
-    <label for="destination">Destination</label>
-    <input class="user-destination" type="text" id="userDestination" />
-    <label for="departure">Departure Date</label>
-    <input class="user-departure" type="text" id="userDeparture">
-    <label for="duration">Trip Duration (days)</label>
-    <input class="user-duration" type="text" id="userDuration" />
-    <label for="number-of-travelers">Number of travelers</label>
-    <input class="travelers" type="text" id="travelers" />
-    <button class="create-cost-button">Estimate Cost</button>
-  </form>
-</section>
+   <main>
+    <section class="view form-view">
+      <form>
+        <label for="destination">Destination</label>
+        <input class="user-destination" type="text" id="userDestination"/>
+        <label for="departure">Departure Date</label>
+        <input class="user-departure" type="text" id="userDeparture">
+        <label for="duration">Trip Duration (days)</label>
+        <input class="user-duration" type="text" id="userDuration"/>
+        <label for="number-of-travelers">Number of travelers</label>
+        <input class="travelers" type="text" id="travelers"/>
+        <button class="create-cost-button">Estimate Cost</button>
+      </form>
+    </section>
+    <section class='user-information'>
+      <h1 class="welcome-page">Joe, You have spent $2000</h1>
+    </section>
+  </main>
 
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
