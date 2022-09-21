@@ -31,7 +31,7 @@ describe('Destination', () => {
   alt: "opera house and city buildings on the water with boats"
   }
   ]
-    destinations = new Destination(destinations)
+    destinations = new Destination(destinations[0])
   })
 
   it('should be a function', () => {
@@ -42,21 +42,26 @@ describe('Destination', () => {
     expect(destinations).to.be.an.instanceOf(Destination);
   });
 
-  it.skip('should have the estimated lodging cost per day', () => {
+  it('should have the travelers Id', () => {
   expect(destinations.id).to.equal(1);
 });
 
-  it.skip('should have the estimated flight cost per person', () => {
-  expect().to.equal();
+  it('should have the estimated lodging cost per day', () => {
+  expect(destinations.estimatedLodgingCostPerDay).to.equal(70);
 });
 
-  it.skip('should have a destination image', () => {
-  expect().to.equal();
+  it('should have the estimated flight cost per person', () => {
+  expect(destinations.estimatedFlightCostPerPerson).to.equal(400);
 });
 
-  it.skip('should have an alternative name for image', () => {
-  expect().to.equal();
+  it('should have a destination image', () => {
+  expect(destinations.image).to.equal("https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80");
 });
+
+  it('should have an alternative name for image', () => {
+  expect(destinations.alt).to.equal("overview of city buildings with a clear sky");
+});
+
 
 
 });

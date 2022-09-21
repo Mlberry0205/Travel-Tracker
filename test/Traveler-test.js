@@ -23,7 +23,7 @@ describe('Traveler', () => {
     travelerType: "shopper"
     }
   ]
-    traveler = new Traveler(travelers)
+    traveler = new Traveler(travelers[0])
   })
 
   it('should be a function', () => {
@@ -34,16 +34,30 @@ describe('Traveler', () => {
     expect(traveler).to.be.an.instanceOf(Traveler);
   });
 
-  it.skip('should have a traveler id', () => {
+  it('should have a traveler id', () => {
     expect(traveler.id).to.equal(1);
   });
 
-  it.skip('should have a traveler name', () => {
+  it('should have a traveler name', () => {
    expect(traveler.name).to.equal('Ham Leadbeater');
  });
 
- it.skip('should have a traveler type', () => {
+ it('should have a traveler type', () => {
   expect(traveler.travelerType).to.equal('relaxer');
 });
+
+it.skip('should be able to store an array of trips', () => {
+ expect(traveler.trips).to.equal([]);
+});
+
+it.skip('a traveler should be able to add trips', () => {
+ expect(traveler.travelerType).to.equal('relaxer');
+});
+
+
+it.skip('should have the total spent plus a 10% traveler fee', () => {
+ expect(traveler.travelerType).to.equal('relaxer');
+});
+
 
 });

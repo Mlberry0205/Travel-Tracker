@@ -9,8 +9,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #060911;
+  background-color: #ad7893;
   color: #F9F6EE;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 main {
@@ -20,7 +22,8 @@ main {
   height: 50vh;
   border-style: dotted;
   border-color: purple;
-
+  overflow-y: hidden;
+  overflow-x: scroll;
 }
 
 .login-in-container {
@@ -40,7 +43,7 @@ main {
 header {
   display: flex;
   flex-direction: column;
-  background-color: #060911;
+  background-color: #b6ffd0;
   width: 100vw;
   height: 20vh;
   align-content: stretch;
@@ -115,7 +118,7 @@ form > input {
 }
 
 form > button {
-  background: purple;
+  background: green;
   border: none;
   border-radius: 5px;
   color: white;
@@ -135,6 +138,64 @@ form > button:hover {
   height: 20vh;
   border-style: dotted;
   border-color: green;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #F9F6EE;
+  width: 100vw;
+  height: 62.5vh;
+  /* overflow-x: hidden;
+  overflow-y: scroll; */
+  border-style: dotted;
+  border-color: green;
+}
+
+.main-section-title {
+  color: green;
+}
+
+.home-view-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #F9F6EE;
+  width: 100vw;
+  height: 62.5vh;
+  border-style: dotted;
+  border-color: red;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+.box-of-destinations {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  width: 100vw;
+  height: 65vh;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+.destination-pic-box {
+  display: flex;
+  align-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 40vh;
+  border-radius: 20px;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  border-style: dotted;
+  border-color: red;
+  overflow-y: hidden;
+  overflow-x: scroll;
 }
 
 /* Hidden */
