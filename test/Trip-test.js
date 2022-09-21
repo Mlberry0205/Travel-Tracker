@@ -1,46 +1,18 @@
 import { expect } from 'chai';
 import Trip from '../src/classes/Trip';
+import Traveler from '../src/classes/Traveler';
+import Destination from '../src/classes/Destination';
+import tripData from './test-datasets/trip-data';
+import destinationData from './test-datasets/destination-data';
 
 describe('Trip', () => {
-  let traveler;
-  let travelers;
-  let trip;
-  let trips;
+
+  let trip1;
 
   beforeEach( () => {
-    trips = [
-      {
-  id: 1,
-  userID: 44,
-  destinationID: 49,
-  travelers: 1,
-  date: "2022/09/16",
-  duration: 8,
-  status: "approved",
-  suggestedActivities: [ ]
-  },
-  {
-  id: 2,
-  userID: 35,
-  destinationID: 25,
-  travelers: 5,
-  date: "2022/10/04",
-  duration: 18,
-  status: "approved",
-  suggestedActivities: [ ]
-  },
-  {
-  id: 3,
-  userID: 3,
-  destinationID: 22,
-  travelers: 4,
-  date: "2022/05/22",
-  duration: 17,
-  status: "approved",
-  suggestedActivities: [ ]
-  }
-  ]
-    trips = new Trip(trips)
+
+    trip1 = new Trip(tripData[2], destinationData[21])
+
   })
 
   it('should be a function', () => {
@@ -48,35 +20,55 @@ describe('Trip', () => {
   });
 
   it('should be an instance of Trip', () => {
-    expect(trips).to.be.an.instanceOf(Trip);
+    expect(trip1).to.be.an.instanceOf(Trip);
   });
 
-  it.skip('should have a traveler id', () => {
-  expect(trips.id).to.equal(1);
+  it('should have a traveler id', () => {
+  expect(trip1.id).to.equal(3);
 });
 
-  it.skip('should have a traveler User id', () => {
-  expect().to.equal();
+  it('should have a traveler UserID', () => {
+  expect(trip1.userID).to.equal(3);
 });
 
-  it.skip('should have the number of travelers', () => {
-  expect().to.equal();
+it('should have a traveler destination id', () => {
+expect(trip1.destinationID).to.equal(22);
 });
 
-  it.skip('should have the date of the trip', () => {
-  expect().to.equal();
+  it('should have the number of travelers', () => {
+  expect(trip1.numberOfTravelers).to.equal(4);
 });
 
-it.skip('should have the duration of the trip', () => {
-expect().to.equal();
+  it('should have the date of the trip', () => {
+  expect(trip1.date).to.equal("2022/05/22");
 });
 
-it.skip('should have the status of the trip', () => {
-expect().to.equal();
+it('should have the duration of the trip', () => {
+expect(trip1.tripDuration).to.equal(17);
 });
 
-it.skip('should have suggested actvities for the trip', () => {
-expect().to.equal();
+it('should have the status of the trip', () => {
+expect(trip1.status).to.equal('approved');
 });
+
+it('should have the totalTrip cost starting at zero', () => {
+expect(trip1.totalTripCost).to.equal(0);
+});
+
+
+it('should have a travelers destination info', () => {
+expect(trip1.destinationInfo).to.deep.equal({
+  id: 22,
+  destination: "Rome, Italy",
+  estimatedLodgingCostPerDay: 90,
+  estimatedFlightCostPerPerson: 650,
+  image: "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+  alt: "people standing inside a colosseum during the day"});
+})
+
+it('should calculate the total cost of the trip', () => {
+expect(trip1.calculateTotalCost()).to.equal(4543);
+});
+
 
 });

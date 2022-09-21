@@ -10,13 +10,26 @@ import { fetchAll } from './apiCalls';
 
 // ######### Query Selectors ###########
 
+const userWelcome = document.querySelector('.user-welcome')
+
 
 // ######### Global Variables ###########
 let travelers;
 let travelerData;
 let trips;
 let destinations;
+let singleTraveler;
 
+// ######### On-Load Function ###########
+
+function getRandomUser() {
+  return Math.floor(Math.random() * travelers.length)
+}
+
+
+function welcomeUser() {
+  userWelcome.innerText = `Welcome back, ${singleTraveler.returnUserName()} !`
+}
 
 
 // ######### Promises ###########
@@ -27,9 +40,12 @@ const getFetch = () => {
     console.log(travelers)
     trips = data[1].trips;
     destinations = data[2].destinations;
-    travelers = new Traveler(travelers);
+    //travelers = new Traveler(travelers);
+    singleTraveler = new Traveler(travelers[getRandomUser()]);
+    console.log(singleTraveler)
     trips = new Trip(trips);
     destinations = new Destination(destinations);
+    welcomeUser()
   })
 }
 
