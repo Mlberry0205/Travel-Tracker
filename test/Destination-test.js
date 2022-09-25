@@ -38,11 +38,11 @@ describe('Destination', () => {
     expect(Destination).to.be.a('function');
   });
 
-  it('should be an instance of Trip', () => {
+  it('should be an instance of Destination', () => {
     expect(destinations).to.be.an.instanceOf(Destination);
   });
 
-  it('should have the travelers Id', () => {
+  it('should have the destination Id', () => {
   expect(destinations.id).to.equal(1);
 });
 

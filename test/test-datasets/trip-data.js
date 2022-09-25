@@ -1,7 +1,7 @@
 const tripData = [
 
 {id: 1,
-userID: 44,
+userID: 1,
 destinationID: 49,
 travelers: 1,
 date: "2022/09/16",
@@ -26,7 +26,7 @@ destinationID: 22,
 travelers: 4,
 date: "2022/05/22",
 duration: 17,
-status: "approved",
+status: "pending",
 suggestedActivities: [ ]
 },
 {
@@ -41,7 +41,7 @@ suggestedActivities: [ ]
 },
 {
 id: 5,
-userID: 42,
+userID: 1,
 destinationID: 29,
 travelers: 3,
 date: "2022/04/30",
@@ -198,8 +198,17 @@ date: "2022/10/05",
 duration: 6,
 status: "approved",
 suggestedActivities: [ ]
+},
+{
+id: 117,
+userID: 1,
+destinationID: 28,
+travelers: 3,
+date: "2021/01/09",
+duration: 15,
+status: "approved",
+suggestedActivities: [ ]
 }
-
 ]
 
 export default tripData;

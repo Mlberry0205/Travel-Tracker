@@ -1,3 +1,4 @@
+
 const travelerData = [
   {
 id: 1,
@@ -249,6 +250,7 @@ id: 50,
 name: "Morey Flanders",
 travelerType: "foodie"
 }
-]
+];
+
 
 export default travelerData
