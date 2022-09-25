@@ -4,14 +4,24 @@ import Traveler from '../src/classes/Traveler';
 import Destination from '../src/classes/Destination';
 import tripData from './test-datasets/trip-data';
 import destinationData from './test-datasets/destination-data';
+import travelerData from './test-datasets/travelers-data';
+import  dayjs from 'dayjs'
+dayjs().format();
 
 describe('Trip', () => {
 
   let trip1;
+  let todaysDate;
+  let currentYearStart;
+  let traveler;
 
   beforeEach( () => {
 
     trip1 = new Trip(tripData[2], destinationData[21])
+
+    traveler = new Traveler(travelerData[0])
+    todaysDate = dayjs().format('YYYY-MM-DD');
+    currentYearStart = dayjs().startOf('year').format('YYYY-MM-DD')
 
   })
 
@@ -48,7 +58,7 @@ expect(trip1.tripDuration).to.equal(17);
 });
 
 it('should have the status of the trip', () => {
-expect(trip1.status).to.equal('approved');
+expect(trip1.status).to.equal('pending');
 });
 
 it('should have the totalTrip cost starting at zero', () => {
@@ -66,8 +76,28 @@ expect(trip1.destinationInfo).to.deep.equal({
   alt: "people standing inside a colosseum during the day"});
 })
 
+it('should calculate the trips end date', () => {
+  trip1.calculateTripEndDate()
+expect(trip1.tripEndDate).to.equal("2022/06/08");
+});
+
+it('should update the past trips', () => {
+  trip1.updatePastTrips(todaysDate);
+expect(trip1.status).to.equal('past trip');
+});
+
+it.skip('should update the upcomimg trips', () => {
+  trip1.updateUpcomingTrips(todaysDate)
+expect(trip1.status).to.equal('upcoming Trip');
+});
+
+it('should update the pending trips', () => {
+  trip1.updatePendingTrips(todaysDate)
+expect(trip1.status).to.equal('trip pending');
+});
+
 it('should calculate the total cost of the trip', () => {
-expect(trip1.calculateTotalCost()).to.equal(4543);
+expect(trip1.calculateTotalCostForOneTrip()).to.equal(4543);
 });
 
 

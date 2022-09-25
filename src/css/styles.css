@@ -20,8 +20,8 @@ main {
   flex-direction: row;
   width: 100vw;
   height: 50vh;
-  border-style: dotted;
-  border-color: purple;
+  /* border-style: dotted;
+  border-color: purple; */
   overflow-y: hidden;
   overflow-x: scroll;
 }
@@ -50,8 +50,8 @@ header {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  border-style: dotted;
-  border-color: pink;
+  /* border-style: dotted;
+  border-color: pink; */
 }
 
 .user-welcome {
@@ -71,6 +71,7 @@ header {
   justify-content: center;
   width: 12%;
   margin-right: 80%;
+
 }
 
 .logo-image {
@@ -81,17 +82,19 @@ header {
   margin-bottom: 80%;
   width: 80%;
   margin-right: 30px;
-  border-style: dotted;
-  border-color: red;
+  /* border-style: dotted;
+  border-color: red; */
 }
 /* ~~~~~~~~~~~~~ Book a trip FORM ~~~~~~~~~~~~~~~ */
-view form-view {
+.form-view {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   margin-top: 40px;
-  border-style: dotted;
-  border-color: red;
+  margin-left: 5%;
+  /* border-style: dotted;
+  border-color: red; */
+  /* background-color: pink; */
 }
 
 
@@ -100,22 +103,26 @@ form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 30px;
-  border-style: dotted;
-  border-color: green;
+  /* border-style: dotted;
+  border-color: green; */
   width: 30vw;
   height: 35vh;
+  margin-top: 5%;
+  margin-left: 5%;
 }
 
-form > label,
-form > input {
+form > label{
   width: 50%;
 }
 
 form > input {
-  font-size: 16px;
   margin-bottom: 20px;
+  width: 50%;
 }
+
+/* client-calendar {
+
+} */
 
 form > button {
   background: green;
@@ -133,11 +140,11 @@ form > button:hover {
 }
 
 .user-information {
-  margin: 30px;
+  margin: 39px;
   width: 40vw;
   height: 20vh;
-  border-style: dotted;
-  border-color: green;
+  /* border-style: dotted;
+  border-color: green; */
 }
 
 .main-section {
@@ -146,12 +153,14 @@ form > button:hover {
   justify-content: space-around;
   align-items: center;
   background-color: #F9F6EE;
-  width: 100vw;
+  width: 95vw;
   height: 62.5vh;
-  /* overflow-x: hidden;
-  overflow-y: scroll; */
-  border-style: dotted;
-  border-color: green;
+  border-radius: 25px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  /* border-style: dotted;
+  border-color: green; */
+  margin-bottom: 5%;
 }
 
 .main-section-title {
@@ -166,8 +175,9 @@ form > button:hover {
   background-color: #F9F6EE;
   width: 100vw;
   height: 62.5vh;
-  border-style: dotted;
-  border-color: red;
+  border-radius: 25px;
+  /* border-style: dotted;
+  border-color: red; */
   overflow-y: hidden;
   overflow-x: scroll;
 }
