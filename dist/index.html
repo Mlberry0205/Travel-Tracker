@@ -42,7 +42,7 @@
     <section class="view form-view">
       <form>
         <label for="destination-selection">Select Destination:</label>
-        <select id="select-destination" name="destination-selection" aria-label="enter destination location" class="destination-entry-selection" required>
+        <select id="travelerDestination" name="destination-selection" aria-label="enter destination location" class="destination-entry-selection" required>
         </select>
         <label for="departure">Departure Date</label>
         <input type="date" name="traveler-booking-date" aria-label="select start date of trip" class="user-departure" type="text" id="travelerDeparture">
@@ -50,7 +50,7 @@
         <input type="number" aria-label="enter desired duration" value="1" class="user-duration" id="travelerDuration" name="quantity" min="1" max="50"/>
         <label for="number-of-travelers">Number of travelers</label>
         <input class="travelers" aria-label="enter desired number of travelers" type="number" id="numTravelers" value="1" name="quantity" min="1" max="50"/>
-        <button class="create-adventure-button">Submit your trip information</button>
+        <button id="adventureButton" class="create-adventure-button">Submit your trip information</button>
       </form>
     </section>
     <section class='user-information'>
@@ -64,7 +64,7 @@
      <div class='box-of-destinations center-container'>
        <div tabindex="8" class='destination-pic-box'></div>
      </div>
-     <h2 class='main-section-title'>Click on a Place to view!</h2>
+     <!-- <h2 class='main-section-title'>Click on a Place to view!</h2> -->
    </section>
  </section>
   <script src="bundle.js"></script>

@@ -181,6 +181,7 @@ form > button:hover {
   display: flex;
   flex-direction: row;
   align-content: space-between;
+  align-items: center;
   width: 100vw;
   height: 65vh;
   overflow-y: hidden;
@@ -193,21 +194,36 @@ form > button:hover {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   width: 80vw;
   height: 40vh;
   border-radius: 20px;
-  margin-left: 10vw;
+  margin-left: 7vw;
   margin-right: 1vw;
-  border-style: dotted;
-  border-color: red;
+  /* border-style: dotted;
+  border-color: red; */
   overflow-x: hidden;
   overflow-y: scroll;
 }
 
-.card-text {
+/* .destination-pics {
+  width: 50vw;
+  height: 20vh;
+} */
+
+h3 {
+  margin-left: 10%;
   font-weight: bold;
   color: black;
+  font-size: x-large;
+}
+
+.card-text {
+  display: flex;
+  margin-left: 20;
+  color: black;
+  width: 90vw;
+  height: 2vh;
 }
 
 /* Hidden */
