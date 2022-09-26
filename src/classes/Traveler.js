@@ -15,15 +15,6 @@ class Traveler {
       return firstName[0];
     }
 
-    // addTripsToMyTripsArray(trips) {
-    //   trips.forEach((trip) => {
-    //     if (trip.userID === this.id) {
-    //       this.trips.push(trip);
-    //     }
-    //   })
-    //   console.log('24', this.trips)
-    //   return this.trips
-    // }
 
     addTripsForTraveler(trip, destination) {
       const travelerTrips = trip.filter((trip) => {
@@ -42,7 +33,6 @@ class Traveler {
     }
 
 
-
     addTripsToThisYear(trips, date) {
       const currentYear = date.split('/')[0];
       this.trips.forEach((trip) => {
@@ -51,7 +41,6 @@ class Traveler {
         }
       })
     }
-
 
 
     yearlyTripsTotal() {
@@ -65,10 +54,5 @@ class Traveler {
 
 
 }
-
-
-
-
-
 
 export default Traveler
