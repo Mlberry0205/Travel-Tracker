@@ -97,8 +97,6 @@ header {
   /* background-color: pink; */
 }
 
-
-
 form {
   display: flex;
   flex-direction: column;
@@ -119,10 +117,6 @@ form > input {
   margin-bottom: 20px;
   width: 50%;
 }
-
-/* client-calendar {
-
-} */
 
 form > button {
   background: green;
@@ -182,6 +176,7 @@ form > button:hover {
   overflow-y: hidden;
   overflow-x: scroll;
 }
+
 .box-of-destinations {
   display: flex;
   flex-direction: row;
@@ -191,6 +186,7 @@ form > button:hover {
   overflow-y: hidden;
   overflow-x: scroll;
 }
+
 .destination-pic-box {
   display: flex;
   align-content: flex-start;

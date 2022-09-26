@@ -15,7 +15,6 @@ class Trip {
     this.suggestedActivities = trip.suggestedActivities;
     this.totalTripCost = 0;
     this.destinationInfo = destinationInfo;
-    //console.log('18', this.destinationInfo)
   };
 
   calculateTripEndDate() {
@@ -34,8 +33,8 @@ class Trip {
 
     console.log('pastTrip', this.status)
     return this.status
-
   }
+
 
   updatePendingTrips() {
     this.calculateTripEndDate()
@@ -46,14 +45,13 @@ class Trip {
     console.log('pending', this.status)
     return this.status
   }
+  
 
   calculateTotalCostForOneTrip() {
-    //for a single trip
     const lodgingCost = this.destinationInfo.estimatedLodgingCostPerDay * this.tripDuration;
     const flightCost = this.destinationInfo.estimatedFlightCostPerPerson * this.numberOfTravelers;
     const totalCost = (lodgingCost + flightCost) * 1.1
     this.totalTripCost = totalCost
-    //console.log(this.totalTripCost)
     return this.totalTripCost;
   }
 };

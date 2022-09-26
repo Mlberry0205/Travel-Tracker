@@ -11,11 +11,13 @@ import  dayjs from 'dayjs'
 dayjs().format();
 
 // ######### Query Selectors ###########
-
 const userWelcome = document.querySelector('.user-welcome')
 const travelerMoneySpent = document.querySelector('#travelerMoney')
-//const daysTraveled = document.querySelector('.days-traveled')
-
+const formDestination = document.getElementById("travelerDestination")
+const formDepartureDate = document.getElementById("travelerDeparture")
+const formTripDuration = document.getElementById("travelerDuration")
+const formNumTravelers = document.getElementById("numTravelers")
+const addTripButton = document.querySelector('create-adventure-button')
 
 // ######### Global Variables ###########
 let travelers;
@@ -28,7 +30,6 @@ let traveler1;
 let currentTraveler;
 const todaysDate = dayjs().format('YYYY/MM/DD');
 const currentYearStart = dayjs().startOf('year').format('YYYY/MM/DD')
-
 
 // ######### Promises ###########
 const getFetch = () => {
@@ -47,15 +48,12 @@ const getFetch = () => {
 
   })
 }
-// not sure where to put this yet
-//showDestinations()
 
 // ######### On-Load Function ###########
 
 function getRandomUser() {
   return Math.floor(Math.random() * travelers.length)
 }
-
 
 function welcomeUser() {
   userWelcome.innerText = `Welcome back, ${singleTraveler.returnUserName()} !`
@@ -81,7 +79,7 @@ function displayYearlyFunds(travelerData) {
   travelerMoneySpent.innerHTML = singleTraveler.yearlyTripsTotal()
 }
 
-// ######### Add Destinations to Form Function ###########
+// ######### Add Destinations to Form Function & POST ###########
 
 function showDestinations() {
    const destinationSelection = document.querySelector('.destination-entry-selection')
@@ -98,25 +96,52 @@ function showDestinations() {
     `
 }
 
-function getFormInputValues() {
-  // console log these const's to see what they are returning
-  const formDestination = document.getElementById("travelerDestination").value;
-  const formDepartureDate = document.getElementById("travelerDeparture").value;
-  const formTripDuration = document.getElementById("travelerDuration").value;
-  const formNumTravelers = document.getElementById("numTravelers").value;
-  const changeDate = departureDate.split("-");
-  const fixedDate = changeDate.join("/");
+const postNewTrip = (newTrip) => {
+  const findDestination = destinations.find(destination => destination.destination === formDestination.value)
   let tripToPost = {
-        "id": trips.length + 1,
-        "userID": traveler.id,
-        "destinationID": parseInt(formDestination),
-        "travelers": parseInt(numOfTravelers),
-        "date": fixedDate,
-        "duration": parseInt(formTripDuration),
-        "status": "pending",
-        "suggestedActivities": []
+        id: Date.now(),
+        userID: singleTraveler.id,
+        destinationID: findDestination.id,
+        travelers: formNumTravelers.value,
+        date: dayjs(formDepartureDate.value).format('YYYY/MM/DD'),
+        duration: formTripDuration.value,
+        status: "pending",
+        suggestedActivities: []
     }
-    return tripToPost
+  fetch('http://localhost:3001/api/v1/trips', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      id: tripToPost.id,
+      userID: tripToPost.userID,
+      destinationID: tripToPost.destinationID,
+      travelers: tripToPost.travelers,
+      date: tripToPost.date,
+      duration: tripToPost.duration,
+      status: tripToPost.status,
+      suggestedActivities: []
+
+    })
+  })
+    .then(response => handleErrors(response))
+    .then(response => response.json())
+    .then((response) => {
+            singleTraveler.trips.push(trip)
+            singleTraveler.addTripsForTraveler(trips, destinations)
+            displayTrips(trips)
+            displayYearlyFunds(travelerData)
+          })
+    .catch(err => showErrorMessage())
+};
+function handleErrors(response) {
+  if (!response.ok) {
+    throw Error(response.statusText);
+  } else {
+  return response;
+  }
+}
+function showErrorMessage() {
+ alert('There was an error!')
 }
 
 function bookNewTrip(event) {
@@ -128,9 +153,4 @@ function bookNewTrip(event) {
 
 // ######### Event Listeners ###########
 window.addEventListener('load', getFetch);
-
-// const dayjs = require('dayjs')
-// //import dayjs from 'dayjs' // ES 2015
-// dayjs().format()
-
 console.log('This is the JavaScript entry file - your code begins here.');
