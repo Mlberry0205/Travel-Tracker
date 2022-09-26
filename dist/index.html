@@ -42,31 +42,36 @@
     <section class="view form-view">
       <form>
         <label for="destination">Destination</label>
-        <input class="user-destination" type="text" id="userDestination"/>
+        <input class="destination-entry-selection" required aria-label="enter destination location"  type="text" id="userDestination" label="enter destination location"/>
+
         <label for="departure">Departure Date</label>
-        <input class="user-departure" type="text" id="userDeparture">
-        <label for="duration">Trip Duration (days)</label>
-        <input class="user-duration" type="text" id="userDuration"/>
+        <input type="date" name="traveler-booking-date" aria-label="select start date of trip" class="user-departure" type="text" id="userDeparture">
+
+        <label for="duration">Trip Duration(days)</label>
+        <input type="number" aria-label="enter desired duration" value="1" class="user-duration" id="userDuration" name="quantity" min="1" max="50"/>
+
         <label for="number-of-travelers">Number of travelers</label>
-        <input class="travelers" type="text" id="travelers"/>
-        <button class="create-cost-button">Estimate Cost</button>
+        <input class="travelers" aria-label="enter desired number of travelers" type="number" id="travelers" value="1" name="quantity" min="1" max="50"/>
+
+        <button class="create-cost-button">Submit your trip information</button>
       </form>
     </section>
     <section class='user-information'>
-      <h1 class="welcome-page">Joe, You have spent $2000</h1>
-      <h1 class="user-info-message"> Check out where you are going next below!</h1>
+      <p><span class="user-money">Total spent this year: $</span><span id='travelerMoney'></span> </p>
+      <h1 class="user-info-message"> Check out your tips below!</h1>
     </section>
   </main>
   <section class='main-section'>
    <section class ='home-view-container'>
-   <h2 class='main-section-title'>Your Destinations</h2>
+   <h2 class='main-section-title'>Scroll to view your trips!</h2>
      <div class='box-of-destinations center-container'>
        <div tabindex="8" class='destination-pic-box'></div>
-       <div tabindex="9" class='destination-pic-box'></div>
+       <!-- <p class="card-text">trip-date</p> -->
+       <!-- <div tabindex="9" class='destination-pic-box'></div>
        <div tabindex="10" class='destination-pic-box'></div>
        <div tabindex="11" class='destination-pic-box'></div>
        <div tabindex="12" class='destination-pic-box'></div>
-       <div tabindex="13" class='destination-pic-box'></div>
+       <div tabindex="13" class='destination-pic-box'></div> -->
      </div>
      <h2 class='main-section-title'>Click on a Place to view!</h2>
    </section>

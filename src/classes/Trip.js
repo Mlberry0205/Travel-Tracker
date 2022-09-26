@@ -15,6 +15,7 @@ class Trip {
     this.suggestedActivities = trip.suggestedActivities;
     this.totalTripCost = 0;
     this.destinationInfo = destinationInfo;
+    //console.log('18', this.destinationInfo)
   };
 
   calculateTripEndDate() {
@@ -52,6 +53,7 @@ class Trip {
     const flightCost = this.destinationInfo.estimatedFlightCostPerPerson * this.numberOfTravelers;
     const totalCost = (lodgingCost + flightCost) * 1.1
     this.totalTripCost = totalCost
+    //console.log(this.totalTripCost)
     return this.totalTripCost;
   }
 };

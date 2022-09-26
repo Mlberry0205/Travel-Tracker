@@ -15,51 +15,44 @@ class Traveler {
       return firstName[0];
     }
 
-    addTripsToMyTripsArray(trips) {
-      trips.forEach((trip) => {
-        if (trip.userID === this.id) {
-          this.trips.push(trip);
-        }
-      })
-      return this.trips
-    }
+    // addTripsToMyTripsArray(trips) {
+    //   trips.forEach((trip) => {
+    //     if (trip.userID === this.id) {
+    //       this.trips.push(trip);
+    //     }
+    //   })
+    //   console.log('24', this.trips)
+    //   return this.trips
+    // }
 
-    addTripsForTraveler(tripData, destinationData) {
-      const travelerTrips = tripData.filter((trip) => {
-        return trip.userID === this.id
+    addTripsForTraveler(trip, destination) {
+      const travelerTrips = trip.filter((trip) => {
+        return trip.userID === this.id;
       })
       let tripDestination;
       travelerTrips.forEach(trip => {
-        destinationData.forEach(destination => {
+        destination.forEach(destination => {
           if (trip.destinationID === destination.id) {
             tripDestination = destination;
           }
           return tripDestination;
         })
         this.trips.push(new Trip(trip, tripDestination))
-        console.log('hey', this.trips)
       })
     }
 
 
 
-    addTripsToThisYear(trips, yearStart) {
-      //console.log('33', yearStart)
-      const currentYear = yearStart.split('-')[0];
-      this.addTripsToMyTripsArray(trips).filter((trip) => {
-        //console.log('hey', !this.tripsThisYear.includes(trip) )
-
-      if (trip.date.split('/')[0] === '2022') {
+    addTripsToThisYear(trips, date) {
+      const currentYear = date.split('/')[0];
+      this.trips.forEach((trip) => {
+        if (trip.date.includes(currentYear)) {
           this.tripsThisYear.push(trip)
         }
       })
-        return this.tripsThisYear
     }
 
-    // getTripsTaken() {
-    //   const approved = this.trips.filter((trip) => trip.status === 'approved')
-    //   return approved.length
-    // }
+
 
     yearlyTripsTotal() {
       let totalYearlyCost = this.tripsThisYear.reduce((total, trip) => {
@@ -67,7 +60,7 @@ class Traveler {
         return total
       }, 0);
       this.totalSpentThisYear = +totalYearlyCost
-      return this.totalSpentThisYear
+      return this.totalSpentThisYear.toFixed(0)
     }
 
 
