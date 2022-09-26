@@ -17,7 +17,7 @@ const formDestination = document.getElementById("travelerDestination")
 const formDepartureDate = document.getElementById("travelerDeparture")
 const formTripDuration = document.getElementById("travelerDuration")
 const formNumTravelers = document.getElementById("numTravelers")
-const addTripButton = document.querySelector('create-adventure-button')
+const addTripButton = document.getElementById('adventureButton')
 
 // ######### Global Variables ###########
 let travelers;
@@ -38,7 +38,7 @@ const getFetch = () => {
     travelers = data[0].travelers;
     trips = data[1].trips;
     destinations = data[2].destinations;
-    singleTraveler = new Traveler(travelers[getRandomUser()]);
+    singleTraveler = new Traveler(travelers[0]);
     welcomeUser()
     singleTraveler.addTripsForTraveler(trips, destinations)
     singleTraveler.addTripsToThisYear(trips, currentYearStart)
@@ -59,9 +59,11 @@ function welcomeUser() {
   userWelcome.innerText = `Welcome back, ${singleTraveler.returnUserName()} !`
 }
 
-function displayTrips(trips) {
+function displayTrips() {
   const travelersTripsDisplayed = document.querySelector('.destination-pic-box')
+  //console.log(trips)
   const results = singleTraveler.trips.map(trip => {
+    console.log(trip)
     return `
       <h3 class="trip-destination">${trip.destinationInfo.destination}</h3>
        <img class="destination-pic-box" src=${trip.destinationInfo.image}
@@ -78,6 +80,31 @@ function displayTrips(trips) {
 function displayYearlyFunds(travelerData) {
   travelerMoneySpent.innerHTML = singleTraveler.yearlyTripsTotal()
 }
+
+// function loginTraveler() {
+//     let userName = usernameInput.value;
+//     if (userName.length < 8) {
+//       return;
+//     }
+//     let userPassword = passwordInput.value;
+//     let userId = userName.substr(8, userName.length);
+//     let parsedId = parseInt(userId);
+//     if (isNaN(parsedId)) {
+//       console.log('username is invalid type!');
+//       return;
+//     }
+//     if (userPassword !== 'travel') {
+//       console.log('Invalid password entry!');
+//       return;
+//     }
+//     console.log('password correct!');
+//     traveler = travelersRepo.getTravelerInfoById(parsedId);
+//     if (traveler === undefined) {
+//       console.log('traveler ID is invalid');
+//       return;
+//     }
+//     onLoginSuccess();
+//   };
 
 // ######### Add Destinations to Form Function & POST ###########
 
@@ -96,15 +123,16 @@ function showDestinations() {
     `
 }
 
-const postNewTrip = (newTrip) => {
+const postNewTrip = () => {
+  //event.preventDefault()
   const findDestination = destinations.find(destination => destination.destination === formDestination.value)
   let tripToPost = {
         id: Date.now(),
         userID: singleTraveler.id,
         destinationID: findDestination.id,
-        travelers: formNumTravelers.value,
+        travelers: Number(formNumTravelers.value),
         date: dayjs(formDepartureDate.value).format('YYYY/MM/DD'),
-        duration: formTripDuration.value,
+        duration: Number(formTripDuration.value),
         status: "pending",
         suggestedActivities: []
     }
@@ -120,18 +148,14 @@ const postNewTrip = (newTrip) => {
       duration: tripToPost.duration,
       status: tripToPost.status,
       suggestedActivities: []
-
     })
   })
     .then(response => handleErrors(response))
     .then(response => response.json())
     .then((response) => {
-            singleTraveler.trips.push(trip)
-            singleTraveler.addTripsForTraveler(trips, destinations)
-            displayTrips(trips)
-            displayYearlyFunds(travelerData)
+          getFetch()
           })
-    .catch(err => showErrorMessage())
+    //.catch(err => showErrorMessage())
 };
 function handleErrors(response) {
   if (!response.ok) {
@@ -140,17 +164,16 @@ function handleErrors(response) {
   return response;
   }
 }
-function showErrorMessage() {
- alert('There was an error!')
-}
+// function showErrorMessage() {
+//  alert('There was an error!')
+// }
 
 function bookNewTrip(event) {
   event.preventDefault();
-  const newTripInfo = getFormInputValues()
-  const newTravelerTrip = new Trip(newTripInfo);
-  postNewTrip(newTravelerTrip)
+  //const newTripInfo = getFormInputValues()
+  //const newTravelerTrip = new Trip(newTripInfo);
+  postNewTrip()
 }
-
-// ######### Event Listeners ###########
 window.addEventListener('load', getFetch);
+addTripButton.addEventListener('click', bookNewTrip);
 console.log('This is the JavaScript entry file - your code begins here.');
