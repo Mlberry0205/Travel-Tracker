@@ -13,8 +13,8 @@ dayjs().format();
 // ######### Query Selectors ###########
 
 const userWelcome = document.querySelector('.user-welcome')
-const travelerMoneySpent = document.querySelector('.money-spent')
-const daysTraveled = document.querySelector('.days-traveled')
+const travelerMoneySpent = document.querySelector('#travelerMoney')
+//const daysTraveled = document.querySelector('.days-traveled')
 
 
 // ######### Global Variables ###########
@@ -24,8 +24,27 @@ let trips;
 let destinations;
 let singleTraveler;
 let trip1;
-const todaysDate = dayjs().format('YYYY-MM-DD');
-const currentYearStart = dayjs().startOf('year').format('YYYY-MM-DD')
+let traveler1;
+let currentTraveler;
+const todaysDate = dayjs().format('YYYY/MM/DD');
+const currentYearStart = dayjs().startOf('year').format('YYYY/MM/DD')
+
+
+// ######### Promises ###########
+const getFetch = () => {
+  fetchAll()
+  .then(data => {
+    travelers = data[0].travelers;
+    trips = data[1].trips;
+    destinations = data[2].destinations;
+    singleTraveler = new Traveler(travelers[getRandomUser()]);
+    welcomeUser()
+    singleTraveler.addTripsForTraveler(trips, destinations)
+    singleTraveler.addTripsToThisYear(trips, currentYearStart)
+    displayYearlyFunds()
+    displayTrips(trips)
+  })
+}
 
 // ######### On-Load Function ###########
 
@@ -38,33 +57,26 @@ function welcomeUser() {
   userWelcome.innerText = `Welcome back, ${singleTraveler.returnUserName()} !`
 }
 
-function displayTravelersMoneySpent() {
-  travelerMoneySpent.innerText = `You have spent, ${trip1.calculateTotalCostForOneTrip()}`
-}
-
-// function displayTravelDays() {
-//   daysTraveled.innerText = `You have traveled ${singleTraveler.getDaysTraveled()} total days`
-// }
-
-
-// ######### Promises ###########
-const getFetch = () => {
-  fetchAll()
-  .then(data => {
-    travelers = data[0].travelers;
-    trips = data[1].trips;
-    destinations = data[2].destinations;
-    //trip1 = new Trip(tripData[2], destinationData[21])
-    //travelers = new Traveler(travelers);
-    singleTraveler = new Traveler(travelers[getRandomUser()]);
-    console.log(singleTraveler)
-    trips = new Trip(trips);
-    destinations = new Destination(destinations);
-    welcomeUser()
-    displayTravelersMoneySpent()
-    displayTravelDays()
+function displayTrips(trips) {
+  const travelersTripsDisplayed = document.querySelector('.destination-pic-box')
+  const results = singleTraveler.trips.map(trip => {
+    return `
+      <h3 class="trip-destination">${trip.destinationInfo.destination}</h3>
+       <img class="destination-pic-box" src=${trip.destinationInfo.image}
+       <p class="card-text trip-date">Date: ${trip.date}</p>
+       <p class="card-text trip-duration">Duration: ${trip.tripDuration} days</p>
+       <p class="card-text trip-participants">Travelers: ${trip.numberOfTravelers}</p>
+       <p class="card-text trip-status">Status: ${trip.status}</p>
+    `
   })
+
+  return travelersTripsDisplayed.innerHTML = results
 }
+
+function displayYearlyFunds(travelerData) {
+  travelerMoneySpent.innerHTML = singleTraveler.yearlyTripsTotal()
+}
+
 
 // ######### Event Listeners ###########
 window.addEventListener('load', getFetch);

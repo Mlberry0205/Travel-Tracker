@@ -10,15 +10,18 @@ dayjs().format();
 
 describe('Traveler', () => {
   let traveler1;
+  let traveler2;
   let todaysDate;
   let currentYearStart;
+  let trip1
 
   beforeEach( () => {
 
     traveler1 = new Traveler(travelerData[0]);
-    todaysDate = dayjs().format('YYYY-MM-DD');
-    currentYearStart = dayjs().startOf('year').format('YYYY-MM-DD')
-
+    traveler2 = new Traveler(travelerData[1]);
+    todaysDate = dayjs().format('YYYY/MM/DD');
+    currentYearStart = dayjs().startOf('year').format('YYYY/MM/DD')
+    trip1 = new Trip(tripData[2], destinationData[21])
   });
 
   it('should be a function', () => {
@@ -42,7 +45,7 @@ describe('Traveler', () => {
 });
 
 it('should have an empty trip array to begin with', () => {
- expect(traveler1.trips).to.deep.equal([]);
+ expect(traveler2.trips).to.deep.equal([]);
 });
 
 it('should be able to store trips for the current year (begin w/empty array)', () => {
@@ -53,40 +56,9 @@ it('should return a users first name', () => {
  expect(traveler1.returnUserName()).to.equal('Ham');
 });
 
-it('should be able to add trips to the trip array', () => {
-expect(traveler1.addTripsToMyTripsArray(tripData)).to.deep.equal([
-  {
-  id: 1,
-  userID: 1,
-  destinationID: 49,
-  travelers: 1,
-  date: '2022/09/16',
-  duration: 8,
-  status: 'approved',
-  suggestedActivities: []
-},
-{
-  id: 5,
-  userID: 1,
-  destinationID: 29,
-  travelers: 3,
-  date: '2022/04/30',
-  duration: 18,
-  status: 'approved',
-  suggestedActivities: []
-},
-{
-  id: 117,
-  userID: 1,
-  destinationID: 28,
-  travelers: 3,
-  date: '2021/01/09',
-  duration: 15,
-  status: 'approved',
-  suggestedActivities: [ ]
-}
-]);
-});
+// it('should be able to add trips to the trip array', () => {
+// expect(traveler1.addTripsToMyTripsArray(tripData)).to.deep.equal();
+// });
 
 it('should be able to store all trips for a taveler', () => {
   traveler1.addTripsForTraveler(tripData, destinationData)
@@ -94,36 +66,17 @@ it('should be able to store all trips for a taveler', () => {
 });
 
 it('should be able to add trips from a specific year to the tripsThisYear array', () => {
-expect(traveler1.addTripsToThisYear(tripData, currentYearStart)).to.deep.equal([
-  {
-  id: 1,
-  userID: 1,
-  destinationID: 49,
-  travelers: 1,
-  date: '2022/09/16',
-  duration: 8,
-  status: 'approved',
-  suggestedActivities: []
-},
-{
-  id: 5,
-  userID: 1,
-  destinationID: 29,
-  travelers: 3,
-  date: '2022/04/30',
-  duration: 18,
-  status: 'approved',
-  suggestedActivities: []
-}
-]);
+  traveler1.addTripsForTraveler(tripData, destinationData)
+  expect(traveler1.trips.length).to.equal(3);
+  expect(traveler1.tripsThisYear).to.eql([]);
+  traveler1.addTripsToThisYear(tripData, currentYearStart)
+  expect(traveler1.tripsThisYear.length).to.equal(2);
 });
 
-// it('should have all the trips a traveler has taken', () => {
-//  expect(traveler1.getTripsTaken()).to.equal('places???');
-// });
 it('should return a travelers yearly trip total', () => {
-  traveler1.calculateTotalCostForOneTrip()
- expect(traveler1.yearlyTripsTotal()).to.equal(45000);
+  traveler1.addTripsForTraveler(tripData, destinationData)
+  traveler1.addTripsToThisYear(tripData, currentYearStart)
+  expect(traveler1.yearlyTripsTotal()).to.equal(11033);
 });
 
 

@@ -157,10 +157,11 @@ form > button:hover {
   height: 62.5vh;
   border-radius: 25px;
   overflow-x: hidden;
-  overflow-y: scroll;
-  /* border-style: dotted;
-  border-color: green; */
+  /* overflow-y: scroll;
+  border-style: dotted; */
+  border-color: green;
   margin-bottom: 5%;
+  margin-top: 50px;
 }
 
 .main-section-title {
@@ -200,12 +201,17 @@ form > button:hover {
   width: 80vw;
   height: 40vh;
   border-radius: 20px;
-  margin-left: 1vw;
+  margin-left: 10vw;
   margin-right: 1vw;
   border-style: dotted;
   border-color: red;
-  overflow-y: hidden;
-  overflow-x: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.card-text {
+  font-weight: bold;
+  color: black;
 }
 
 /* Hidden */
