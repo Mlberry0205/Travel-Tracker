@@ -41,17 +41,20 @@
    <main>
     <section class="view form-view">
       <form>
-        <label for="destination">Destination</label>
-        <input class="destination-entry-selection" required aria-label="enter destination location"  type="text" id="userDestination" label="enter destination location"/>
+        <!-- <label for="destination">Destination</label>
+        <input class="destination-entry-selection" required aria-label="enter destination location" type="text" id="travelerDestination" label="enter destination location"/> -->
+        <label for="destination-selection">Select Destination:</label>
+       <select id="select-destination" name="destination-selection" aria-label="enter destination location" class="destination-entry-selection" required>
+       </select>
 
         <label for="departure">Departure Date</label>
-        <input type="date" name="traveler-booking-date" aria-label="select start date of trip" class="user-departure" type="text" id="userDeparture">
+        <input type="date" name="traveler-booking-date" aria-label="select start date of trip" class="user-departure" type="text" id="travelerDeparture">
 
         <label for="duration">Trip Duration(days)</label>
-        <input type="number" aria-label="enter desired duration" value="1" class="user-duration" id="userDuration" name="quantity" min="1" max="50"/>
+        <input type="number" aria-label="enter desired duration" value="1" class="user-duration" id="travelerDuration" name="quantity" min="1" max="50"/>
 
         <label for="number-of-travelers">Number of travelers</label>
-        <input class="travelers" aria-label="enter desired number of travelers" type="number" id="travelers" value="1" name="quantity" min="1" max="50"/>
+        <input class="travelers" aria-label="enter desired number of travelers" type="number" id="numTravelers" value="1" name="quantity" min="1" max="50"/>
 
         <button class="create-cost-button">Submit your trip information</button>
       </form>

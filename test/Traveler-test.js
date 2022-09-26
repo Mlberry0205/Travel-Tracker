@@ -76,7 +76,7 @@ it('should be able to add trips from a specific year to the tripsThisYear array'
 it('should return a travelers yearly trip total', () => {
   traveler1.addTripsForTraveler(tripData, destinationData)
   traveler1.addTripsToThisYear(tripData, currentYearStart)
-  expect(traveler1.yearlyTripsTotal()).to.equal(11033);
+  expect(traveler1.yearlyTripsTotal()).to.equal('11033');
 });
 
 

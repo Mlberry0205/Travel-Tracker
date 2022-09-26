@@ -43,8 +43,12 @@ const getFetch = () => {
     singleTraveler.addTripsToThisYear(trips, currentYearStart)
     displayYearlyFunds()
     displayTrips(trips)
+    showDestinations()
+
   })
 }
+// not sure where to put this yet
+//showDestinations()
 
 // ######### On-Load Function ###########
 
@@ -77,6 +81,50 @@ function displayYearlyFunds(travelerData) {
   travelerMoneySpent.innerHTML = singleTraveler.yearlyTripsTotal()
 }
 
+// ######### Add Destinations to Form Function ###########
+
+function showDestinations() {
+   const destinationSelection = document.querySelector('.destination-entry-selection')
+   const destinationOptions = destinations.map(option => {
+        return `<option> ${option.destination} </option>`
+    })
+    destinationSelection.innerHTML = `
+    <form>
+    <label for="destination-selection">Select Destination:</label>
+    <select id="select-destination" name="destination-selection" class="destination-entry-selection" required>
+    ${destinationOptions}
+    </select>
+    </form>
+    `
+}
+
+function getFormInputValues() {
+  // console log these const's to see what they are returning
+  const formDestination = document.getElementById("travelerDestination").value;
+  const formDepartureDate = document.getElementById("travelerDeparture").value;
+  const formTripDuration = document.getElementById("travelerDuration").value;
+  const formNumTravelers = document.getElementById("numTravelers").value;
+  const changeDate = departureDate.split("-");
+  const fixedDate = changeDate.join("/");
+  let tripToPost = {
+        "id": trips.length + 1,
+        "userID": traveler.id,
+        "destinationID": parseInt(formDestination),
+        "travelers": parseInt(numOfTravelers),
+        "date": fixedDate,
+        "duration": parseInt(formTripDuration),
+        "status": "pending",
+        "suggestedActivities": []
+    }
+    return tripToPost
+}
+
+function bookNewTrip(event) {
+  event.preventDefault();
+  const newTripInfo = getFormInputValues()
+  const newTravelerTrip = new Trip(newTripInfo);
+  postNewTrip(newTravelerTrip)
+}
 
 // ######### Event Listeners ###########
 window.addEventListener('load', getFetch);
