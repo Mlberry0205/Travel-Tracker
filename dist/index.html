@@ -42,20 +42,20 @@
     <section class="view form-view">
       <form>
         <label for="destination-selection">Select Destination:</label>
-        <select id="travelerDestination" name="destination-selection" aria-label="enter destination location" class="destination-entry-selection" required>
+        <select tabindex="4" id="travelerDestination" name="destination-selection" aria-label="enter destination location" class="destination-entry-selection" required>
         </select>
         <label for="departure">Departure Date</label>
-        <input type="date" name="traveler-booking-date" aria-label="select start date of trip" class="user-departure" type="text" id="travelerDeparture">
+        <input tabindex="5" type="date" name="traveler-booking-date" aria-label="select start date of trip" class="user-departure" type="text" id="travelerDeparture">
         <label for="duration">Trip Duration(days)</label>
-        <input type="number" aria-label="enter desired duration" value="1" class="user-duration" id="travelerDuration" name="quantity" min="1" max="50"/>
+        <input tabindex="6" type="number" aria-label="enter desired duration" value="1" class="user-duration" id="travelerDuration" name="quantity" min="1" max="50"/>
         <label for="number-of-travelers">Number of travelers</label>
-        <input class="travelers" aria-label="enter desired number of travelers" type="number" id="numTravelers" value="1" name="quantity" min="1" max="50"/>
+        <input tabindex="7" class="travelers" aria-label="enter desired number of travelers" type="number" id="numTravelers" value="1" name="quantity" min="1" max="50"/>
         <button id="adventureButton" class="create-adventure-button">Submit your trip information</button>
       </form>
     </section>
     <section class='user-information'>
       <p><span class="user-money">Total spent this year: $</span><span id='travelerMoney'></span> </p>
-      <h1 class="user-info-message"> Check out your tips below!</h1>
+      <h1 class="user-info-message"> Check out your trips below!</h1>
     </section>
   </main>
   <section class='main-section'>

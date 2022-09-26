@@ -18,6 +18,7 @@ const formDepartureDate = document.getElementById("travelerDeparture")
 const formTripDuration = document.getElementById("travelerDuration")
 const formNumTravelers = document.getElementById("numTravelers")
 const addTripButton = document.getElementById('adventureButton')
+const loginButton = document.querySelector('.login-button')
 
 // ######### Global Variables ###########
 let travelers;
@@ -38,13 +39,16 @@ const getFetch = () => {
     travelers = data[0].travelers;
     trips = data[1].trips;
     destinations = data[2].destinations;
+    // singleTraveler = new Traveler(travelers[getRandomUser()]);
     singleTraveler = new Traveler(travelers[0]);
+    // trip1 = new Trip(trips[singleTraveler.id], destinations[singleTraveler.id])
     welcomeUser()
     singleTraveler.addTripsForTraveler(trips, destinations)
     singleTraveler.addTripsToThisYear(trips, currentYearStart)
     displayYearlyFunds()
     displayTrips(trips)
     showDestinations()
+
 
   })
 }
@@ -60,17 +64,17 @@ function welcomeUser() {
 }
 
 function displayTrips() {
+  // trip1.updatePastTrips(todaysDate)
+  // trip1.updatePendingTrips(todaysDate)
   const travelersTripsDisplayed = document.querySelector('.destination-pic-box')
-  //console.log(trips)
   const results = singleTraveler.trips.map(trip => {
-    console.log(trip)
     return `
       <h3 class="trip-destination">${trip.destinationInfo.destination}</h3>
-       <img class="destination-pic-box" src=${trip.destinationInfo.image}
-       <p class="card-text trip-date">Date: ${trip.date}</p>
-       <p class="card-text trip-duration">Duration: ${trip.tripDuration} days</p>
-       <p class="card-text trip-participants">Travelers: ${trip.numberOfTravelers}</p>
-       <p class="card-text trip-status">Status: ${trip.status}</p>
+       <img alt="photo of your trip" class="destination-pic-box" src=${trip.destinationInfo.image}
+       <p tabindex="9" class="card-text trip-date">Date: ${trip.date}</p>
+       <p tabindex="10" class="card-text trip-duration">Duration: ${trip.tripDuration} days</p>
+       <p tabindex="11" class="card-text trip-participants">Travelers: ${trip.numberOfTravelers}</p>
+       <p tabindex="12" class="card-text trip-status">Status: ${trip.status}</p>
     `
   })
 

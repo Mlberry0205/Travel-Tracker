@@ -26,13 +26,13 @@ class Trip {
     this.calculateTripEndDate()
     const pastTrips = dayjs(this.date).format('YYYY/MM/DD')
     if (dayjs(this.tripEndDate).isBefore(today)) {
-      this.status = 'past trip';
+      return this.status = 'past trip';
     } else if (dayjs(upcomingTrips).isAfter(today) && this.status === 'approved') {
-      this.status = 'upcoming Trip';
+      return this.status = 'upcoming Trip';
     }
 
     console.log('pastTrip', this.status)
-    return this.status
+    return pastTrips
   }
 
 
@@ -40,12 +40,12 @@ class Trip {
     this.calculateTripEndDate()
     const pendingTrips = dayjs(this.date).format('YYYY/MM/DD')
     if (this.status === 'pending') {
-      this.status = 'trip pending'
+      return this.status = 'trip pending'
     }
     console.log('pending', this.status)
-    return this.status
+    return pendingTrips
   }
-  
+
 
   calculateTotalCostForOneTrip() {
     const lodgingCost = this.destinationInfo.estimatedLodgingCostPerDay * this.tripDuration;

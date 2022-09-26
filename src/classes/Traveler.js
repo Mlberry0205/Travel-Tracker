@@ -17,6 +17,7 @@ class Traveler {
 
 
     addTripsForTraveler(trip, destination) {
+      this.trips = [];
       const travelerTrips = trip.filter((trip) => {
         return trip.userID === this.id;
       })
