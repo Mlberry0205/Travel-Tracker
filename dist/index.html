@@ -8,10 +8,10 @@
   <title>Travel Tracker</title>
 </head>
 <body>
-  <h1 class="welcome-page">The World is your Oyster.</h1>
+  <h1 class="welcome-page">The World is your Oyster</h1>
   <header class='top-section'>
      <section class='user-welcome'>
-       <p class='user-welcome'>Welcome</p>
+       <p class='user-welcome'>Welcome Traveler</p>
      </section>
      <section class='logo-title'>
        <img src='./images/baggage.png' class='logo-image' alt='travel tracker logo'>
@@ -19,19 +19,17 @@
    </header>
   <!---SIGNIN PAGE-->
   <section class="home-view">
-     <!-- <h1 class="welcome-page">The World is your Oyster.</h1> -->
   </section>
   <section class="login-view">
     <form>
       <section class="login-in-container">
-        <p>Please Sign In</p>
         <label for="username"><b>Username</b></label>
         <input tabindex="1" type="text" class="client-name-input" placeholder="Enter Username" id="username" required>
         <label for="password"><b>Password</b></label>
         <input tabindex="2" type="password" class="client-password-input" placeholder="Enter Password" id="password" required>
         <div class="container" >
           <button tabindex="3" type="button" class="login-button">Login</button>
-          <p class="hidden" id="login-error">Login Error. Please try again.</p>
+          <p id="login-error"></p>
         </div>
       </section>
     </form>
@@ -42,18 +40,20 @@
         <label for="destination-selection">Select Destination:</label>
         <select tabindex="4" id="travelerDestination" name="destination-selection" aria-label="enter destination location" class="destination-entry-selection" required>
         </select>
-        <label for="departure">Departure Date</label>
-        <input tabindex="5" type="date" name="traveler-booking-date" aria-label="select start date of trip" class="user-departure" type="text" id="travelerDeparture">
         <label for="duration">Trip Duration(days)</label>
-        <input tabindex="6" type="number" aria-label="enter desired duration" value="1" class="user-duration" id="travelerDuration" name="quantity" min="1" max="50"/>
+        <input tabindex="5" type="number" aria-label="enter desired duration" value="1" class="user-duration" id="travelerDuration" name="quantity" min="1" max="50"/>
         <label for="number-of-travelers">Number of travelers</label>
-        <input tabindex="7" class="travelers" aria-label="enter desired number of travelers" type="number" id="numTravelers" value="1" name="quantity" min="1" max="50"/>
+        <input tabindex="6" class="travelers" aria-label="enter desired number of travelers" type="number" id="numTravelers" value="1" name="quantity" min="1" max="50"/>
+        <label for="departure">Departure Date</label>
+        <input tabindex="7" type="date" name="traveler-booking-date" aria-label="select start date of trip" class="user-departure" type="text" id="travelerDeparture">
+        <p id="input-error"></p>
         <button id="adventureButton" class="create-adventure-button">Submit your trip information</button>
       </form>
     </section>
     <section class='user-information hidden'>
-      <p><span class="user-money">Total spent this year: $</span><span id='travelerMoney'></span> </p>
-      <h1 class="user-info-message"> Check out your trips below!</h1>
+      <p><span class="user-money">Total spent this year: $</span>
+        <span id='travelerMoney'></span> </p>
+      <h1 class="user-info-message"> Check out your approved and pending trips below!</h1>
     </section>
   </main>
   <section class='main-section hidden'>

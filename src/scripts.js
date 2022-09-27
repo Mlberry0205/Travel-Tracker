@@ -24,6 +24,8 @@ const loginContainer = document.querySelector('.login-in-container');
 const travelerName = document.querySelector('.client-name-input');
 const travelerPassword = document.querySelector('.client-password-input');
 const loginError = document.querySelector('#login-error');
+const inputError = document.querySelector('#input-error');
+const postError = document.querySelector('#input-error');
 
 // ######### Global Variables ###########
 let travelers;
@@ -62,7 +64,6 @@ function displayTravelerPage() {
   show(userInformation);
   show(mainSection);
   hide(loginContainer);
-
 }
 
 function welcomeUser() {
@@ -90,7 +91,7 @@ function displayYearlyFunds(travelerData) {
 
 const verifyLogin = (event) => {
       if (travelerName.value === "" || travelerPassword.value === "") {
-        loginError.innerText = `PLEASE SUBMIT BOTH USERNAME AND PASSWORD!`;
+        loginError.innerText = `Please submit your username and Password`;
       } else if (travelerPassword.value !== "travel") {
         loginError.innerText = `INCORRECT PASSWORD!`;
       } else if (!travelerName.value.includes("traveler")) {
@@ -104,6 +105,14 @@ const verifyLogin = (event) => {
          showDestinations();
       };
     };
+
+    const verifyFormInput = (event) => {
+      if (formDestination.value === '' || formDepartureDate.value === '' ||   formTripDuration.value === '' ||   formNumTravelers.value === '') {
+      return inputError.innerHTML = 'Please enter valid inputs in each field';
+    } else {
+       displayTrips();
+    }
+    }
 
 // ######### Add Destinations to Form Function & POST ###########
 function showDestinations() {
@@ -161,18 +170,18 @@ const postNewTrip = () => {
           getFetch()
           })
     .catch((err) => {
-      postErrorMessage.innerText = 'Error updating data, please retry later'
+    console.log('Traveler did not input all valid entries')
     });
   }
 
 function bookNewTrip(event) {
   event.preventDefault();
   postNewTrip();
+  verifyFormInput();
 }
 
 window.addEventListener('load', getFetch);
 addTripButton.addEventListener('click', bookNewTrip);
 loginButton.addEventListener('click', verifyLogin);
-
 const show = (event) => event.classList.remove("hidden");
 const hide = (event) => event.classList.add("hidden");
