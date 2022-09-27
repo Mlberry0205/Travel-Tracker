@@ -1,4 +1,3 @@
-
 const destinationData = [
   {
 id: 1,

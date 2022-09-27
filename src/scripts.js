@@ -1,23 +1,29 @@
 // ######### Imports ###########
-//import TravelerRepository from './classes/TravelerRepository';
 import Traveler from './classes/Traveler';
 import Destination from './classes/Destination';
 import Trip from './classes/Trip';
 import './css/styles.css';
-import './images/turing-logo.png';
 import './images/baggage.png';
 import { fetchAll } from './apiCalls';
 import  dayjs from 'dayjs'
 dayjs().format();
 
 // ######### Query Selectors ###########
-const userWelcome = document.querySelector('.user-welcome')
-const travelerMoneySpent = document.querySelector('#travelerMoney')
-const formDestination = document.getElementById("travelerDestination")
-const formDepartureDate = document.getElementById("travelerDeparture")
-const formTripDuration = document.getElementById("travelerDuration")
-const formNumTravelers = document.getElementById("numTravelers")
-const addTripButton = document.getElementById('adventureButton')
+const userWelcome = document.querySelector('.user-welcome');
+const travelerMoneySpent = document.querySelector('#travelerMoney');
+const formDestination = document.getElementById("travelerDestination");
+const formDepartureDate = document.getElementById("travelerDeparture");
+const formTripDuration = document.getElementById("travelerDuration");
+const formNumTravelers = document.getElementById("numTravelers");
+const addTripButton = document.getElementById('adventureButton');
+const loginButton = document.querySelector('.login-button');
+const formView = document.querySelector('.form-view');
+const userInformation = document.querySelector('.user-information');
+const mainSection = document.querySelector('.main-section');
+const loginContainer = document.querySelector('.login-in-container');
+const travelerName = document.querySelector('.client-name-input');
+const travelerPassword = document.querySelector('.client-password-input');
+const loginError = document.querySelector('#login-error');
 
 // ######### Global Variables ###########
 let travelers;
@@ -25,11 +31,8 @@ let travelerData;
 let trips;
 let destinations;
 let singleTraveler;
-let trip1;
-let traveler1;
-let currentTraveler;
-const todaysDate = dayjs().format('YYYY/MM/DD');
-const currentYearStart = dayjs().startOf('year').format('YYYY/MM/DD')
+let todaysDate = dayjs().format('YYYY/MM/DD');
+let currentYearStart = dayjs().startOf('year').format('YYYY/MM/DD');
 
 // ######### Promises ###########
 const getFetch = () => {
@@ -38,21 +41,28 @@ const getFetch = () => {
     travelers = data[0].travelers;
     trips = data[1].trips;
     destinations = data[2].destinations;
-    singleTraveler = new Traveler(travelers[0]);
-    welcomeUser()
-    singleTraveler.addTripsForTraveler(trips, destinations)
-    singleTraveler.addTripsToThisYear(trips, currentYearStart)
-    displayYearlyFunds()
-    displayTrips(trips)
-    showDestinations()
-
+    verifyLogin();
   })
 }
 
 // ######### On-Load Function ###########
+function loadTravelerPage(travelers, trips, destinations) {
+  let userID = parseInt(travelerName.value.slice(8, travelerName.value.length))
+  singleTraveler = new Traveler(travelers[userID - 1]);
+  singleTraveler.addTripsForTraveler(trips, destinations);
+}
 
-function getRandomUser() {
-  return Math.floor(Math.random() * travelers.length)
+function displayTravelerPage() {
+  welcomeUser();
+  singleTraveler.addTripsToThisYear(trips, currentYearStart);
+  displayYearlyFunds();
+  displayTrips(trips);
+  showDestinations();
+  show(formView);
+  show(userInformation);
+  show(mainSection);
+  hide(loginContainer);
+
 }
 
 function welcomeUser() {
@@ -60,56 +70,44 @@ function welcomeUser() {
 }
 
 function displayTrips() {
-  const travelersTripsDisplayed = document.querySelector('.destination-pic-box')
-  //console.log(trips)
+  const travelersTripsDisplayed = document.querySelector('.destination-pic-box');
   const results = singleTraveler.trips.map(trip => {
-    console.log(trip)
     return `
       <h3 class="trip-destination">${trip.destinationInfo.destination}</h3>
-       <img class="destination-pic-box" src=${trip.destinationInfo.image}
-       <p class="card-text trip-date">Date: ${trip.date}</p>
-       <p class="card-text trip-duration">Duration: ${trip.tripDuration} days</p>
-       <p class="card-text trip-participants">Travelers: ${trip.numberOfTravelers}</p>
-       <p class="card-text trip-status">Status: ${trip.status}</p>
+       <img alt="photo of your trip" class="destination-pic-box" src=${trip.destinationInfo.image}
+       <p tabindex="9" class="card-text trip-date">Date: ${trip.date}</p>
+       <p tabindex="10" class="card-text trip-duration">Duration: ${trip.tripDuration} days</p>
+       <p tabindex="11" class="card-text trip-participants">Travelers: ${trip.numberOfTravelers}</p>
+       <p tabindex="12" class="card-text trip-status">Status: ${trip.status}</p>
     `
   })
-
   return travelersTripsDisplayed.innerHTML = results
 }
 
 function displayYearlyFunds(travelerData) {
-  travelerMoneySpent.innerHTML = singleTraveler.yearlyTripsTotal()
+  travelerMoneySpent.innerHTML = singleTraveler.yearlyTripsTotal();
 }
 
-// function loginTraveler() {
-//     let userName = usernameInput.value;
-//     if (userName.length < 8) {
-//       return;
-//     }
-//     let userPassword = passwordInput.value;
-//     let userId = userName.substr(8, userName.length);
-//     let parsedId = parseInt(userId);
-//     if (isNaN(parsedId)) {
-//       console.log('username is invalid type!');
-//       return;
-//     }
-//     if (userPassword !== 'travel') {
-//       console.log('Invalid password entry!');
-//       return;
-//     }
-//     console.log('password correct!');
-//     traveler = travelersRepo.getTravelerInfoById(parsedId);
-//     if (traveler === undefined) {
-//       console.log('traveler ID is invalid');
-//       return;
-//     }
-//     onLoginSuccess();
-//   };
+const verifyLogin = (event) => {
+      if (travelerName.value === "" || travelerPassword.value === "") {
+        loginError.innerText = `PLEASE SUBMIT BOTH USERNAME AND PASSWORD!`;
+      } else if (travelerPassword.value !== "travel") {
+        loginError.innerText = `INCORRECT PASSWORD!`;
+      } else if (!travelerName.value.includes("traveler")) {
+        loginError.innerText = `USERNAME DOES NOT EXIST! PLEASE TRY AGAIN.`;
+      } else {
+        loginError.innerText = '';
+         loadTravelerPage(travelers, trips, destinations);
+         displayTravelerPage();
+         displayYearlyFunds(travelerData);
+         displayTrips();
+         showDestinations();
+      };
+    };
 
 // ######### Add Destinations to Form Function & POST ###########
-
 function showDestinations() {
-   const destinationSelection = document.querySelector('.destination-entry-selection')
+   const destinationSelection = document.querySelector('.destination-entry-selection');
    const destinationOptions = destinations.map(option => {
         return `<option> ${option.destination} </option>`
     })
@@ -124,8 +122,7 @@ function showDestinations() {
 }
 
 const postNewTrip = () => {
-  //event.preventDefault()
-  const findDestination = destinations.find(destination => destination.destination === formDestination.value)
+  const findDestination = destinations.find(destination => destination.destination === formDestination.value);
   let tripToPost = {
         id: Date.now(),
         userID: singleTraveler.id,
@@ -136,44 +133,46 @@ const postNewTrip = () => {
         status: "pending",
         suggestedActivities: []
     }
+
   fetch('http://localhost:3001/api/v1/trips', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
-      id: tripToPost.id,
-      userID: tripToPost.userID,
-      destinationID: tripToPost.destinationID,
-      travelers: tripToPost.travelers,
-      date: tripToPost.date,
-      duration: tripToPost.duration,
-      status: tripToPost.status,
-      suggestedActivities: []
+    id: tripToPost.id,
+    userID: tripToPost.userID,
+    destinationID: tripToPost.destinationID,
+    travelers: tripToPost.travelers,
+    date: tripToPost.date,
+    duration: tripToPost.duration,
+    status: tripToPost.status,
+    suggestedActivities: []
     })
   })
-    .then(response => handleErrors(response))
-    .then(response => response.json())
+  .then((response) => {
+          if (!response.ok) {
+            throw new Error(
+              "There was an error adding your Trip Information, please retry later"
+            );
+          } else {
+            return response.json();
+          }
+        })
     .then((response) => {
           getFetch()
           })
-    //.catch(err => showErrorMessage())
-};
-function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  } else {
-  return response;
+    .catch((err) => {
+      postErrorMessage.innerText = 'Error updating data, please retry later'
+    });
   }
-}
-// function showErrorMessage() {
-//  alert('There was an error!')
-// }
 
 function bookNewTrip(event) {
   event.preventDefault();
-  //const newTripInfo = getFormInputValues()
-  //const newTravelerTrip = new Trip(newTripInfo);
-  postNewTrip()
+  postNewTrip();
 }
+
 window.addEventListener('load', getFetch);
 addTripButton.addEventListener('click', bookNewTrip);
-console.log('This is the JavaScript entry file - your code begins here.');
+loginButton.addEventListener('click', verifyLogin);
+
+const show = (event) => event.classList.remove("hidden");
+const hide = (event) => event.classList.add("hidden");

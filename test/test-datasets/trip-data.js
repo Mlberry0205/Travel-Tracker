@@ -1,5 +1,4 @@
 const tripData = [
-
 {id: 1,
 userID: 1,
 destinationID: 49,
