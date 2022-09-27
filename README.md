@@ -4,7 +4,7 @@
 ## OverView
 Travel Tracker is an application to manage and track different trips for a user
 
-![Traveler Page:](https://user-images.githubusercontent.com/102934145/192599325-124b96a2-a2f3-49eb-8e59-6293a57fd645.mp4)
+![Dashboard](https://user-images.githubusercontent.com/102934145/192600017-2c6cab40-c2a7-48db-bf78-e3a78a226dba.gif)
 
 ## Project Specs:
 [Click to view rubric](https://frontend.turing.edu/projects/travel-tracker.html).
