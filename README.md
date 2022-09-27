@@ -4,9 +4,8 @@
 ## OverView
 Travel Tracker is an application to manage and track different trips for a user
 
-![Part 1 Site overview:](https://user-images.githubusercontent.com/102934145/188329775-6afa5319-c898-4dbd-afa5-94bcd069495a.png)
-![Part 2 Site overview ](https://user-images.githubusercontent.com/105405396/191311266-13710462-afd7-41cd-94bf-b2066294503c.png)
-![User Input Forms](https://user-images.githubusercontent.com/105405396/191311368-d0955a76-c3eb-4ccf-8d75-360b06258f98.png)
+![Traveler Page:](https://user-images.githubusercontent.com/102934145/192599325-124b96a2-a2f3-49eb-8e59-6293a57fd645.mp4)
+
 ## Project Specs:
 [Click to view rubric](https://frontend.turing.edu/projects/travel-tracker.html).
 
@@ -16,7 +15,12 @@ Travel Tracker is an application to manage and track different trips for a user
 - All members of the group should clone down the _forked_ repo.
 - Once cloned, change into the directory and install the project dependencies. Run `npm install` to install project dependencies.
 - Run `npm start` in the terminal to see the HTML page.  `Control + C` is the command to stop running the local server.     
-- Do not run `npm audit fix --force`.  This will update to the latest version of packages.  We need to be using `webpack-dev-server@3.11.2` which is not the latest version.  If you start to run into Webpack errors, first check that all group members are using the correct version.  
+- Do not run `npm audit fix --force`.  This will update to the latest version of packages.  We need to be using `webpack-dev-server@3.11.2` which is not the latest version.  If you start to run into Webpack errors, first check that all group members are using the correct version. 
+
+##User credentials:
+--UserName: traveler03 (change the last 2 digits to log into another users profile)
+--Password: travel
+--Hit the login button
 
 ## Testing
 There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran `npm install`, then the tooling you need to start testing is already installed (`mocha` and `chai`).
