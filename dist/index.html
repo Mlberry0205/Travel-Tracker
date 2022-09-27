@@ -8,19 +8,25 @@
   <title>Travel Tracker</title>
 </head>
 <body>
+  <h1 class="welcome-page">The World is your Oyster.</h1>
+  <header class='top-section'>
+     <section class='user-welcome'>
+       <p class='user-welcome'>Welcome</p>
+     </section>
+     <section class='logo-title'>
+       <img src='./images/baggage.png' class='logo-image' alt='travel tracker logo'>
+     </section>
+   </header>
   <!---SIGNIN PAGE-->
   <section class="home-view">
-     <h1 class="welcome-page">The World is your Oyster.</h1>
+     <!-- <h1 class="welcome-page">The World is your Oyster.</h1> -->
   </section>
-  <section class="login-view hidden">
+  <section class="login-view">
     <form>
-      <div class="imagecontainer">
-        <!-- //add image! -->
-      </div>
-      <section class="login-in-container" hidden>
+      <section class="login-in-container">
         <p>Please Sign In</p>
         <label for="username"><b>Username</b></label>
-        <input tabindex="1" type="text" class="client-name-input" placeholder="Enter Username" id="'username" required>
+        <input tabindex="1" type="text" class="client-name-input" placeholder="Enter Username" id="username" required>
         <label for="password"><b>Password</b></label>
         <input tabindex="2" type="password" class="client-password-input" placeholder="Enter Password" id="password" required>
         <div class="container" >
@@ -30,16 +36,8 @@
       </section>
     </form>
   </section>
-  <header class='top-section'>
-     <section class='user-welcome'>
-       <p class='user-welcome'>Welcome back, Joe!</p>
-     </section>
-     <section class='logo-title'>
-       <img src='./images/baggage.png' class='logo-image' alt='travel tracker logo'>
-     </section>
-   </header>
    <main>
-    <section class="view form-view">
+    <section class="view form-view hidden">
       <form>
         <label for="destination-selection">Select Destination:</label>
         <select tabindex="4" id="travelerDestination" name="destination-selection" aria-label="enter destination location" class="destination-entry-selection" required>
@@ -53,18 +51,17 @@
         <button id="adventureButton" class="create-adventure-button">Submit your trip information</button>
       </form>
     </section>
-    <section class='user-information'>
+    <section class='user-information hidden'>
       <p><span class="user-money">Total spent this year: $</span><span id='travelerMoney'></span> </p>
       <h1 class="user-info-message"> Check out your trips below!</h1>
     </section>
   </main>
-  <section class='main-section'>
+  <section class='main-section hidden'>
    <section class ='home-view-container'>
    <h2 class='main-section-title'>Scroll to view your trips!</h2>
      <div class='box-of-destinations center-container'>
        <div tabindex="8" class='destination-pic-box'></div>
      </div>
-     <!-- <h2 class='main-section-title'>Click on a Place to view!</h2> -->
    </section>
  </section>
   <script src="bundle.js"></script>

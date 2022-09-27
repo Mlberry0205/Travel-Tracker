@@ -13,14 +13,12 @@ describe('Trip', () => {
   let trip1;
   let todaysDate;
   let currentYearStart;
-  let traveler;
 
   beforeEach( () => {
 
-    trip1 = new Trip(tripData[2], destinationData[21])
-    traveler = new Traveler(travelerData[0])
-    todaysDate = dayjs().format('YYYY-MM-DD');
-    currentYearStart = dayjs().startOf('year').format('YYYY-MM-DD')
+  trip1 = new Trip(tripData[2], destinationData[21])
+  todaysDate = dayjs().format('YYYY-MM-DD');
+  currentYearStart = dayjs().startOf('year').format('YYYY-MM-DD')
 
   })
 
@@ -85,11 +83,6 @@ describe('Trip', () => {
     expect(trip1.status).to.equal('past trip');
   });
 
-  it.skip('should update the upcomimg trips', () => {
-    trip1.updateUpcomingTrips(todaysDate)
-    expect(trip1.status).to.equal('upcoming Trip');
-  });
-
   it('should update the pending trips', () => {
     trip1.updatePendingTrips(todaysDate)
     expect(trip1.status).to.equal('trip pending');
@@ -98,5 +91,4 @@ describe('Trip', () => {
   it('should calculate the total cost of the trip', () => {
     expect(trip1.calculateTotalCostForOneTrip()).to.equal(4543);
   });
-
 });

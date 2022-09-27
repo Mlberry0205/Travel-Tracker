@@ -11,10 +11,9 @@ class Traveler {
     };
 
     returnUserName() {
-      const firstName = this.name.split(" ")
+      const firstName = this.name.split(" ");
       return firstName[0];
-    }
-
+    };
 
     addTripsForTraveler(trip, destination) {
       this.trips = [];
@@ -31,8 +30,7 @@ class Traveler {
         })
         this.trips.push(new Trip(trip, tripDestination))
       })
-    }
-
+    };
 
     addTripsToThisYear(trips, date) {
       const currentYear = date.split('/')[0];
@@ -41,8 +39,7 @@ class Traveler {
           this.tripsThisYear.push(trip)
         }
       })
-    }
-
+    };
 
     yearlyTripsTotal() {
       let totalYearlyCost = this.tripsThisYear.reduce((total, trip) => {
@@ -51,9 +48,7 @@ class Traveler {
       }, 0);
       this.totalSpentThisYear = +totalYearlyCost
       return this.totalSpentThisYear.toFixed(0)
-    }
-
-
-}
+    };
+};
 
 export default Traveler

@@ -1,4 +1,3 @@
-
 const travelerData = [
   {
 id: 1,
